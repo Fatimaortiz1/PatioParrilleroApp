@@ -1,0 +1,216 @@
+PROYECTO: PATIO PARRILLERO APP
+VERSIÓN: 1.0
+AUTOR: Fátima
+
+---
+
+📱 DESCRIPCIÓN GENERAL
+
+Aplicación web tipo app para negocio de hamburguesas y alitas llamada “Patio Parrillero”.
+
+Permite:
+
+* Ver menú
+* Agregar productos al carrito
+* Modificar cantidades
+* Agregar notas al pedido
+* Elegir tipo de entrega
+* Elegir método de pago
+* Enviar pedido por WhatsApp
+* Descargar ticket del pedido
+* Cotizar eventos
+* Administrar productos desde panel oculto
+
+---
+
+📂 ESTRUCTURA DEL PROYECTO
+
+Archivos principales:
+
+* index.html → Pantalla de inicio
+* menu.html → Menú de productos
+* carrito.html → Carrito de compras
+* checkout.html → Confirmación de pedido
+* cotizacion.html → Cotizar eventos
+* admin.html → Panel administrador
+* login.html → Login del admin
+* style.css → Estilos de toda la app
+* app.js → Lógica principal (carrito, pedidos, etc.)
+* /img → Carpeta de imágenes
+
+---
+
+⚙️ FUNCIONALIDADES IMPLEMENTADAS
+
+🛒 MENÚ
+
+* Muestra productos dinámicos desde localStorage
+* Botón “Agregar” funcional
+* Diseño tipo app en grid
+
+🛍️ CARRITO
+
+* Mostrar productos agregados
+* Aumentar / disminuir cantidad
+* Eliminar productos
+* Vaciar carrito
+* Mostrar total
+* Nota del pedido (ej: “sin cebolla”)
+
+📦 CHECKOUT
+
+* Datos del cliente
+* Tipo de entrega:
+
+  * domicilio (con dirección)
+  * recoger en local
+* Método de pago:
+
+  * efectivo
+  * transferencia (con CLABE + comprobante)
+  * tarjeta (link externo)
+
+📄 TICKET
+
+* Generación de imagen PNG
+* Descarga del ticket antes de enviar pedido
+* Incluye:
+
+  * cliente
+  * teléfono
+  * productos
+  * total
+  * notas
+
+📲 WHATSAPP
+
+* Envío automático del pedido con formato
+* Número configurado: 523414367254
+
+🎉 COTIZACIÓN
+
+* Formulario de eventos
+* Envío automático por WhatsApp
+
+🔐 ADMINISTRADOR
+
+* Login requerido
+* Usuario: FatimaOrtiz1
+* Contraseña: 98815334
+
+Funciones:
+
+* Agregar productos
+* Eliminar productos
+* Guardado en localStorage
+
+---
+
+🎨 DISEÑO
+
+* Estilo tipo app móvil
+* Encabezado con logo
+* Tarjetas (cards)
+* Botones grandes
+* Colores cálidos (naranja / comida)
+* Diseño limpio y sencillo
+
+---
+
+🧠 LÓGICA PRINCIPAL (app.js)
+
+Funciones clave:
+
+* cargarCarrito()
+
+* guardarCarrito()
+
+* agregarAlCarrito()
+
+* mostrarCarrito()
+
+* actualizarBotonCarrito()
+
+* cargarProductos()
+
+* guardarProductos()
+
+* mostrarProductos()
+
+* finalizarPedido()
+
+* enviarCotizacion()
+
+* mostrarDireccion()
+
+* mostrarPago()
+
+* descargarTicket()
+
+* loginAdmin()
+
+* verificarAccesoAdmin()
+
+---
+
+💾 ALMACENAMIENTO
+
+Se usa localStorage para:
+
+* carrito
+* productos
+* nota del pedido
+* sesión admin
+
+---
+
+🚧 MEJORAS FUTURAS
+
+PRIORIDAD ALTA:
+
+* Número de pedido automático
+* Fecha y hora en ticket
+* Mostrar categorías en menú
+* Productos reales del negocio (alitas, combos)
+
+PRIORIDAD MEDIA:
+
+* Promociones editables desde admin
+* Marcar “más vendidos”
+* Agregar combos reales
+
+PRIORIDAD PRO:
+
+* Base de datos (Firebase)
+* Pedidos guardados (historial)
+* Notificaciones
+* Panel admin avanzado
+
+---
+
+📌 NOTAS IMPORTANTES
+
+* No se usa base de datos (solo localStorage)
+* No se almacenan pagos reales (seguridad)
+* Pagos con tarjeta se hacen mediante link externo
+* WhatsApp no permite enviar imagen automáticamente
+
+---
+
+🚀 ESTADO ACTUAL
+
+APP FUNCIONAL LISTA PARA USO REAL
+(Solo falta cargar menú real del negocio)
+
+---
+
+🔥 SIGUIENTE PASO RECOMENDADO
+
+Cargar menú real:
+
+* Alitas (7, 12, 16)
+* Salsas
+* Combos
+* Precios finales
+
+---
