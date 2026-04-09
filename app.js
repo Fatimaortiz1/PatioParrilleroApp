@@ -108,7 +108,7 @@ function mostrarProductos() {
         <h3>${producto.nombre}</h3>
         <p>${producto.descripcion}</p>
         <p><strong>$${producto.precio}</strong></p>
-        <button class="button" onclick="agregarAlCarrito('${producto.nombre}', ${producto.precio})">
+        <button class="button" onclick="agregarAlCarrito('${producto.nombre.replace(/'/g, "\\'")}', ${producto.precio})">
           Agregar
         </button>
       </div>
@@ -117,11 +117,11 @@ function mostrarProductos() {
 }
 
 function agregarProductoAdmin() {
-  const nombre = document.getElementById("adminNombre").value.trim();
-  const precio = Number(document.getElementById("adminPrecio").value);
-  const imagen = document.getElementById("adminImagen").value.trim();
-  const categoria = document.getElementById("adminCategoria").value.trim();
-  const descripcion = document.getElementById("adminDescripcion").value.trim();
+  const nombre = document.getElementById("adminNombre")?.value.trim();
+  const precio = Number(document.getElementById("adminPrecio")?.value);
+  const imagen = document.getElementById("adminImagen")?.value.trim();
+  const categoria = document.getElementById("adminCategoria")?.value.trim();
+  const descripcion = document.getElementById("adminDescripcion")?.value.trim();
 
   if (!nombre || !precio || !imagen || !categoria || !descripcion) {
     alert("Por favor llena todos los campos del producto");
@@ -201,7 +201,6 @@ function mostrarCarrito() {
   let html = "";
 
   carrito.forEach((producto, index) => {
-
     const precio = Number(producto.precio) || 0;
     const cantidad = Number(producto.cantidad) || 1;
     const subtotal = precio * cantidad;
@@ -209,38 +208,31 @@ function mostrarCarrito() {
     total += subtotal;
 
     html += `
-    
-<div class="cart-line">
+      <div class="cart-line">
+        <div class="cart-top">
+          <div class="cart-name">
+            ${producto.nombre}
+          </div>
 
-  <div class="cart-top">
+          <div class="cart-controls">
+            <button onclick="disminuirCantidad(${index})">-</button>
+            <span>${cantidad}</span>
+            <button onclick="aumentarCantidad(${index})">+</button>
+            <button class="cart-delete" onclick="eliminarProducto(${index})">✕</button>
+          </div>
+        </div>
 
-        <div class="cart-name">
-          ${producto.nombre}
-    </div>
-
-    <div class="cart-controls">
-      <button onclick="disminuirCantidad(${index})">-</button>
-
-      <span>${cantidad}</span>
-      <button onclick="aumentarCantidad(${index})">+</button>
-
-      <button class="cart-delete" onclick="eliminarProducto(${index})">✕</button>
-    </div>
-
-  </div>
-
-  <div class="cart-bottom">
-    $${subtotal}
-  </div>
-
-</div>
-`;
-
+        <div class="cart-bottom">
+          $${subtotal}
+        </div>
+      </div>
+    `;
   });
 
   listaCarrito.innerHTML = html;
   totalBox.textContent = "$" + total;
 }
+
 function aumentarCantidad(index) {
   carrito[index].cantidad += 1;
   guardarCarrito();
@@ -272,6 +264,7 @@ function vaciarCarrito() {
   guardarCarrito();
   mostrarCarrito();
   actualizarBotonCarrito();
+}
 
 function guardarNotaPedido() {
   const notaInput = document.getElementById("notaPedido");
@@ -279,17 +272,16 @@ function guardarNotaPedido() {
 
   localStorage.setItem("notaPedido", notaInput.value);
 }
-function guardarNotaPedido() {
+
+function cargarNotaPedido() {
   const notaInput = document.getElementById("notaPedido");
   if (!notaInput) return;
 
-  localStorage.setItem("notaPedido", notaInput.value);
-}
-
+  notaInput.value = localStorage.getItem("notaPedido") || "";
 }
 
 function mostrarDireccion() {
-  const tipoEntrega = document.getElementById("tipoEntrega").value;
+  const tipoEntrega = document.getElementById("tipoEntrega")?.value;
   const contenedorDireccion = document.getElementById("contenedorDireccion");
 
   if (!contenedorDireccion) return;
@@ -306,8 +298,9 @@ function mostrarDireccion() {
     if (referenciasInput) referenciasInput.value = "";
   }
 }
+
 function mostrarPago() {
-  const metodoPago = document.getElementById("metodoPago").value;
+  const metodoPago = document.getElementById("metodoPago")?.value;
   const bloqueTransferencia = document.getElementById("bloqueTransferencia");
   const bloqueTarjeta = document.getElementById("bloqueTarjeta");
 
@@ -324,7 +317,11 @@ function mostrarPago() {
 }
 
 function copiarClabe() {
-  const clabe = document.getElementById("clabeTexto").textContent.trim();
+  const clabeTexto = document.getElementById("clabeTexto");
+  if (!clabeTexto) return;
+
+  const clabe = clabeTexto.textContent.trim();
+
   navigator.clipboard.writeText(clabe)
     .then(() => alert("CLABE copiada"))
     .catch(() => alert("No se pudo copiar la CLABE"));
@@ -403,67 +400,31 @@ function prepararVistaTicket() {
   campos.forEach(id => {
     const elemento = document.getElementById(id);
     if (elemento) {
-      elemento.addEventListener("input", actualizarVistaTicket);
-      elemento.addEventListener("change", actualizarVistaTicket);
+      elemento.addEventListener("input", function () {
+        if (id === "notaPedido") {
+          guardarNotaPedido();
+        }
+        actualizarVistaTicket();
+      });
+
+      elemento.addEventListener("change", function () {
+        if (id === "notaPedido") {
+          guardarNotaPedido();
+        }
+        if (id === "tipoEntrega") {
+          mostrarDireccion();
+        }
+        if (id === "metodoPago") {
+          mostrarPago();
+        }
+        actualizarVistaTicket();
+      });
     }
   });
 
   actualizarVistaTicket();
 }
-function actualizarVistaTicket() {
-  const nombre = document.getElementById("nombre")?.value.trim() || "";
-  const telefono = document.getElementById("telefono")?.value.trim() || "";
-  const tipoEntrega = document.getElementById("tipoEntrega")?.value || "";
-  const metodoPago = document.getElementById("metodoPago")?.value || "";
-  const notaPedido = localStorage.getItem("notaPedido") || "";
 
-  const ticketNombre = document.getElementById("ticketNombre");
-  const ticketTelefono = document.getElementById("ticketTelefono");
-  const ticketEntrega = document.getElementById("ticketEntrega");
-  const ticketPago = document.getElementById("ticketPago");
-  const ticketProductos = document.getElementById("ticketProductos");
-  const ticketNotas = document.getElementById("ticketNotas");
-  const ticketTotal = document.getElementById("ticketTotal");
-
-  if (!ticketNombre || !ticketTelefono || !ticketEntrega || !ticketPago || !ticketProductos || !ticketNotas || !ticketTotal) {
-    return;
-  }
-
-  ticketNombre.textContent = "Cliente: " + (nombre || "-");
-  ticketTelefono.textContent = "Teléfono: " + (telefono || "-");
-  ticketEntrega.textContent = "Entrega: " + (tipoEntrega || "-");
-  ticketPago.textContent = "Pago: " + (metodoPago || "-");
-  ticketNotas.textContent = "Indicaciones: " + (notaPedido || "Sin indicaciones");
-
-  let html = "";
-  let total = 0;
-
-  carrito.forEach(producto => {
-    const precio = Number(producto.precio) || 0;
-    const cantidad = Number(producto.cantidad) || 1;
-    const subtotal = precio * cantidad;
-    total += subtotal;
-
-    html += `<p>${producto.nombre} x${cantidad} - $${subtotal}</p>`;
-  });
-
-  ticketProductos.innerHTML = html || "<p>Sin productos</p>";
-  ticketTotal.textContent = "Total: $" + total;
-}
-
-function prepararVistaTicket() {
-  const campos = ["nombre", "telefono", "tipoEntrega", "metodoPago", "direccion", "referencias", "notaPedido"];
-
-  campos.forEach(id => {
-    const elemento = document.getElementById(id);
-    if (elemento) {
-      elemento.addEventListener("input", actualizarVistaTicket);
-      elemento.addEventListener("change", actualizarVistaTicket);
-    }
-  });
-
-  actualizarVistaTicket();
-}
 function dibujarTextoMultilinea(ctx, texto, x, y, maxWidth, lineHeight) {
   const palabras = texto.split(" ");
   let linea = "";
@@ -565,20 +526,18 @@ function descargarTicket() {
 }
 
 function finalizarPedido() {
-  const nombre = document.getElementById("nombre").value.trim();
-  const telefono = document.getElementById("telefono").value.trim();
-  const tipoEntrega = document.getElementById("tipoEntrega").value;
+  const nombre = document.getElementById("nombre")?.value.trim();
+  const telefono = document.getElementById("telefono")?.value.trim();
+  const tipoEntrega = document.getElementById("tipoEntrega")?.value;
   const direccionInput = document.getElementById("direccion");
   const referenciasInput = document.getElementById("referencias");
   const direccion = direccionInput ? direccionInput.value.trim() : "";
   const referencias = referenciasInput ? referenciasInput.value.trim() : "";
-  const metodoPago = document.getElementById("metodoPago").value;
+  const metodoPago = document.getElementById("metodoPago")?.value;
   const notaPedido = localStorage.getItem("notaPedido") || "";
   const nombreArchivoPago = obtenerNombreArchivoPago();
 
-  const notaTexto = notaPedido
-    ? `Indicaciones: ${notaPedido}%0A`
-    : "";
+  const notaTexto = notaPedido ? `Indicaciones: ${notaPedido}%0A` : "";
 
   if (!nombre || !telefono || !tipoEntrega || !metodoPago) {
     alert("Por favor llena los campos obligatorios");
@@ -646,13 +605,12 @@ function finalizarPedido() {
 }
 
 function enviarCotizacion() {
-
-  const nombre = document.getElementById("nombreEvento").value.trim();
-  const telefono = document.getElementById("telefonoEvento").value.trim();
-  const fecha = document.getElementById("fechaEvento").value.trim();
-  const personas = document.getElementById("personasEvento").value.trim();
-  const lugar = document.getElementById("lugarEvento").value.trim();
-  const detalle = document.getElementById("detalleEvento").value.trim();
+  const nombre = document.getElementById("nombreEvento")?.value.trim();
+  const telefono = document.getElementById("telefonoEvento")?.value.trim();
+  const fecha = document.getElementById("fechaEvento")?.value.trim();
+  const personas = document.getElementById("personasEvento")?.value.trim();
+  const lugar = document.getElementById("lugarEvento")?.value.trim();
+  const detalle = document.getElementById("detalleEvento")?.value.trim();
 
   if (!nombre || !telefono || !fecha || !personas || !lugar || !detalle) {
     alert("Por favor llena todos los campos");
@@ -674,26 +632,10 @@ function enviarCotizacion() {
 
   window.open(url, "_blank");
 }
-  const numeroNegocio = "523414367254";
-
-  const mensaje =
-  `Hola, quiero hacer un pedido en Patio Parrillero.%0A%0A` +
-  `Nombre: ${nombre}%0A` +
-  `Teléfono: ${telefono}%0A` +
-  `Tipo de entrega: ${tipoEntrega}%0A` +
-  entregaTexto +
-  `Método de pago: ${metodoPago}%0A` +
-  notaTexto +
-  `%0APedido:%0A${productosTexto}%0A` +
-  `Total: $${total}`;
-  const url = `https://wa.me/${numeroNegocio}?text=${mensaje}`;
-
-  window.open(url, "_blank");
-
 
 function loginAdmin() {
-  const usuario = document.getElementById("usuarioAdmin").value.trim();
-  const password = document.getElementById("passwordAdmin").value.trim();
+  const usuario = document.getElementById("usuarioAdmin")?.value.trim();
+  const password = document.getElementById("passwordAdmin")?.value.trim();
 
   const usuarioCorrecto = "FatimaOrtiz1";
   const passwordCorrecta = "98815334";
@@ -723,21 +665,13 @@ function cerrarSesionAdmin() {
 document.addEventListener("DOMContentLoaded", function () {
   cargarCarrito();
   cargarProductos();
-  mostrarCarrito();
-  actualizarBotonCarrito();
   mostrarProductos();
+  mostrarCarrito();
   mostrarProductosAdmin();
+  actualizarBotonCarrito();
   cargarNotaPedido();
   prepararInputCapturaPago();
+  mostrarDireccion();
   mostrarPago();
   prepararVistaTicket();
-});
-document.addEventListener("DOMContentLoaded", function () {
-  cargarCarrito();
-  cargarProductos();
-  mostrarCarrito();
-  actualizarBotonCarrito();
-  mostrarProductos();
-  mostrarProductosAdmin();
-  cargarNotaPedido();
 });
