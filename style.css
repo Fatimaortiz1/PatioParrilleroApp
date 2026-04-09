@@ -1,0 +1,414 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f2f2f2;
+  margin: 0;
+  padding: 0;
+}
+
+.app-wrapper {
+  max-width: 430px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background: white;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+}
+
+.header-app {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #d84315;
+  color: white;
+  padding: 16px;
+}
+
+.logo-app {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 12px;
+  background: white;
+}
+
+.logo-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.header-app h1 {
+  font-size: 22px;
+  margin: 0;
+}
+
+.header-app p {
+  margin: 4px 0 0 0;
+  font-size: 14px;
+}
+
+.container {
+  padding: 18px;
+}
+
+.button {
+  background: #ff5722;
+  color: white;
+  border: none;
+  padding: 14px 16px;
+  margin-top: 10px;
+  font-size: 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.card {
+  background: white;
+  border-radius: 16px;
+  padding: 14px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  text-align: left;
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 14px;
+  margin-top: 10px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+.total-box {
+  background: #fff3e0;
+  padding: 14px;
+  border-radius: 12px;
+  font-weight: bold;
+  margin: 14px 0;
+}
+
+.qty-buttons {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.qty-buttons .button {
+  width: auto;
+  flex: 1;
+  margin-top: 0;
+}
+
+.menu-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.menu-grid .card{
+  padding:10px;
+  border-radius:14px;
+  text-align:center;
+}
+
+.menu-grid .card img{
+  width:100%;
+  height:110px;
+  object-fit:cover;
+  border-radius:10px;
+}
+
+.menu-grid h3{
+  font-size:15px;
+  margin:6px 0;
+}
+
+.menu-grid p{
+  font-size:13px;
+  margin:4px 0;
+}
+
+.menu-grid .button{
+  font-size:13px;
+  padding:8px;
+}
+
+.ticket-box {
+  background: #fff8f0;
+  border: 2px dashed #ffb38a;
+  border-radius: 16px;
+  padding: 16px;
+  margin: 16px 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.ticket-box h3 {
+  margin: 0 0 12px 0;
+  font-size: 18px;
+  color: #d84315;
+}
+
+.ticket-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+.ticket-box input,
+.ticket-box select,
+.ticket-box textarea {
+  margin-bottom: 10px;
+}
+
+.ticket-box:last-child {
+  margin-bottom: 0;
+}
+.cart-line{
+  padding:12px 0;
+  border-bottom:1px solid #eee;
+}
+
+.cart-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.cart-name{
+  font-weight:600;
+  font-size:15px;
+}
+
+.cart-controls{
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+
+.cart-controls button{
+  width:26px;
+  height:26px;
+  border:none;
+  border-radius:6px;
+  background:#ff5722;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.cart-delete{
+  background:#e53935 !important;
+}
+
+.cart-bottom{
+  font-size:14px;
+  margin-top:4px;
+  color:#555;
+}
+.bottom-nav{
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  justify-content: space-around;
+  background: white;
+  border-top: 1px solid #eee;
+  padding: 12px 0;
+  margin-top: 20px;
+}
+
+.bottom-nav a{
+  text-decoration: none;
+  color: #d84315;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.bottom-nav{
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  background:white;
+  border-top:1px solid #eee;
+  padding:12px 0;
+  margin-top:20px;
+  position:sticky;
+  bottom:0;
+}
+
+.bottom-nav a{
+  text-decoration:none;
+  color:#d84315;
+  font-weight:bold;
+  font-size:14px;
+}
+.ticket-box textarea{
+  width: 100%;
+  min-height: 80px;
+  padding: 12px;
+  margin-top: 10px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  font-size: 14px;
+  box-sizing: border-box;
+  resize: none;
+}
+#bloqueTransferencia p,
+#bloqueTarjeta p {
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+#nombreArchivoPago {
+  margin-top: 8px;
+  font-size: 13px;
+  color: #555;
+}
+.ticket-preview{
+  background: white;
+  color: black;
+  padding: 16px;
+  border: 1px dashed #999;
+  border-radius: 12px;
+  text-align: left;
+  font-family: Arial, sans-serif;
+}
+
+.ticket-preview h2{
+  text-align: center;
+  margin: 0 0 10px 0;
+  font-size: 20px;
+}
+
+.ticket-preview p,
+.ticket-preview h3{
+  margin: 6px 0;
+  font-size: 14px;
+}
+
+.ticket-preview hr{
+  border: none;
+  border-top: 1px dashed #999;
+  margin: 10px 0;
+}
+.welcome-box{
+  background:#fff8f0;
+  border-radius:16px;
+  padding:16px;
+  margin-bottom:16px;
+  text-align:center;
+}
+
+.welcome-box h2{
+  margin:0 0 8px 0;
+}
+
+.welcome-box p{
+  margin:0;
+  color:#666;
+  font-size:14px;
+}
+
+.home-actions{
+  margin-bottom:18px;
+}
+
+.home-section{
+  background:white;
+  border-radius:16px;
+  padding:14px;
+  margin-bottom:16px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.08);
+}
+
+.home-section h3{
+  margin:0 0 12px 0;
+  color:#d84315;
+}
+
+.promo-day{
+  background:linear-gradient(180deg, #fff3e0 0%, #ffffff 100%);
+  border:1px solid #ffd4b3;
+}
+
+.promo-price{
+  font-size:22px;
+  font-weight:bold;
+  color:#d84315;
+  margin-top:8px;
+}
+
+.mini-card{
+  background:#fafafa;
+  border-radius:12px;
+  padding:12px;
+  margin-top:10px;
+  border:1px solid #eee;
+}
+
+.mini-card p{
+  margin:4px 0;
+}
+.ticket-box h3{
+  margin-top: 0;
+  margin-bottom: 12px;
+  color: #d84315;
+}
+
+.ticket-box textarea{
+  width: 100%;
+  min-height: 100px;
+  padding: 12px;
+  margin-top: 10px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  font-size: 14px;
+  box-sizing: border-box;
+  resize: none;
+}
+.menu-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.menu-grid .card{
+  padding:10px;
+  border-radius:14px;
+  text-align:center;
+}
+
+.menu-grid .card img{
+  width:100%;
+  height:110px;
+  object-fit:cover;
+  border-radius:10px;
+}
+
+.menu-grid h3{
+  font-size:15px;
+  margin:6px 0;
+}
+
+.menu-grid p{
+  font-size:13px;
+  margin:4px 0;
+}
+
+.menu-grid .button{
+  font-size:13px;
+  padding:8px;
+}

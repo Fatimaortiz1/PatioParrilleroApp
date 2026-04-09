@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cotizar Evento</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="app-wrapper">
+
+    <header class="header-app">
+      <div class="logo-app">
+        <img src="img/logo.jpeg" alt="Logo Patio Parrillero" class="logo-img">
+      </div>
+
+      <div>
+        <h1>Cotizar Evento</h1>
+        <p>Patio Parrillero</p>
+      </div>
+    </header>
+
+    <div class="container">
+
+      <div class="ticket-box">
+        <h3>Datos del evento</h3>
+
+        <input type="text" id="nombreEvento" placeholder="Nombre completo">
+        <input type="text" id="telefonoEvento" placeholder="Teléfono">
+        <input type="text" id="fechaEvento" placeholder="Fecha del evento">
+        <input type="text" id="personasEvento" placeholder="Número de personas">
+        <input type="text" id="lugarEvento" placeholder="Lugar del evento">
+        <textarea id="detalleEvento" placeholder="Escribe detalles del evento"></textarea>
+      </div>
+
+      <div class="ticket-box">
+        <button class="button" onclick="enviarCotizacion()">Enviar cotización</button>
+
+        <a href="index.html">
+          <button class="button">Volver</button>
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

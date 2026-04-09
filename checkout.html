@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confirmar Pedido</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app-wrapper">
+
+<header class="header-app">
+  <div class="logo-app">
+    <img src="img/logo.jpeg" alt="Logo Patio Parrillero" class="logo-img">
+  </div>
+  <div>
+    <h1>Confirmar Pedido</h1>
+    <p>Patio Parrillero</p>
+  </div>
+</header>
+
+<div class="container">
+
+<!-- DATOS DEL CLIENTE -->
+
+<div class="ticket-box">
+  <h3>Datos del cliente</h3>
+
+  <input type="text" id="nombre" placeholder="Nombre completo">
+  <input type="text" id="telefono" placeholder="Teléfono">
+
+  <select id="tipoEntrega" onchange="mostrarDireccion()">
+    <option value="">Selecciona modo de entrega</option>
+    <option value="domicilio">Domicilio</option>
+    <option value="recoger">Recoger en el local</option>
+  </select>
+
+  <div id="contenedorDireccion" style="display:none;">
+    <input type="text" id="direccion" placeholder="Dirección">
+    <input type="text" id="referencias" placeholder="Referencias del domicilio">
+  </div>
+
+  <select id="metodoPago" onchange="mostrarPago()">
+    <option value="">Método de pago</option>
+    <option value="efectivo">Efectivo</option>
+    <option value="transferencia">Transferencia</option>
+    <option value="tarjeta">Tarjeta</option>
+  </select>
+</div>
+
+<!-- TRANSFERENCIA -->
+
+<div class="ticket-box" id="bloqueTransferencia" style="display:none;">
+  <h3>Pago por transferencia</h3>
+
+  <p><strong>Banco:</strong> Mercado Pago W</p>
+  <p><strong>Nombre:</strong> Patio Parrillero</p>
+  <p><strong>CLABE:</strong> <span id="clabeTexto">722969010424157508</span></p>
+
+<button class="button" type="button" onclick="copiarClabe()">Copiar CLABE</button>
+
+<label><strong>Subir captura de pago</strong></label> <input type="file" id="capturaPago" accept="image/*,.pdf">
+
+  <p id="nombreArchivoPago"></p>
+</div>
+
+<!-- TARJETA -->
+
+<div class="ticket-box" id="bloqueTarjeta" style="display:none;">
+  <h3>Pago con tarjeta</h3>
+  <p>Para pagar con tarjeta usa el enlace seguro:</p>
+  <button class="button" type="button" onclick="abrirPagoTarjeta()">Pagar con tarjeta</button>
+</div>
+
+<!-- BOTONES -->
+
+<div class="ticket-box">
+
+  <button class="button" onclick="descargarTicket()">
+    Descargar ticket
+  </button>
+
+  <button class="button" onclick="finalizarPedido()">
+    Enviar pedido
+  </button>
+
+  <a href="carrito.html">
+    <button class="button">Volver al carrito</button>
+  </a>
+
+</div>
+
+</div>
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>

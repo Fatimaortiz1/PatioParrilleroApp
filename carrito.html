@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrito - Patio Parrillero</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="app-wrapper">
+
+    <header class="header-app">
+      <div class="logo-app">
+        <img src="img/logo.jpeg" alt="Logo Patio Parrillero" class="logo-img">
+      </div>
+      <div>
+        <h1>Carrito</h1>
+        <p>Patio Parrillero</p>
+      </div>
+    </header>
+
+    <div class="container">
+      <div id="lista-carrito"></div>
+
+      <div class="ticket-box">
+        <h3>Indicaciones del pedido</h3>
+        <textarea id="notaPedido" placeholder="Ejemplo: hamburguesa sin cebolla y chile"></textarea>
+      </div>
+
+      <div class="ticket-box">
+        <h3>Resumen del pedido</h3>
+        <div class="ticket-line">
+          <span>Total:</span>
+          <span id="total">$0</span>
+        </div>
+      </div>
+
+      <a href="checkout.html">
+        <button class="button">Continuar pedido</button>
+      </a>
+
+      <button class="button" onclick="vaciarCarrito()">Vaciar carrito</button>
+
+      <a href="menu.html">
+        <button class="button">Seguir comprando</button>
+      </a>
+    </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

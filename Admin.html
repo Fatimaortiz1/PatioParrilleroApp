@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administrador - Patio Parrillero</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="header-app">
+    <div class="logo-app">
+      <img src="img/logo.jpeg" alt="Logo Patio Parrillero" class="logo-img">
+    </div>
+
+    <div>
+      <h1>Panel Administrador</h1>
+      <p>Patio Parrillero</p>
+    </div>
+  </header>
+
+  <div class="container">
+    <h2>Agregar producto</h2>
+
+    <input type="text" id="adminNombre" placeholder="Nombre del producto">
+    <input type="number" id="adminPrecio" placeholder="Precio">
+    <input type="text" id="adminImagen" placeholder="Ruta de imagen. Ej: img/hamburguesa.jpg">
+    <input type="text" id="adminCategoria" placeholder="Categoría. Ej: Hamburguesas">
+    <textarea id="adminDescripcion" placeholder="Descripción"></textarea>
+
+    <button class="button" onclick="agregarProductoAdmin()">Guardar producto</button>
+
+    <h2>Productos registrados</h2>
+    <div id="lista-admin-productos"></div>
+
+    <a href="index.html">
+      <button class="button">Volver al inicio</button>
+    </a>
+    <button class="button" onclick="cerrarSesionAdmin()">Cerrar sesión</button>
+  </div>
+
+  <script src="app.js"></script>
+<script>
+  verificarAccesoAdmin();
+</script>
+
+</body>
+</html>
